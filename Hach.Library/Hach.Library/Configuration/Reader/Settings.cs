@@ -27,7 +27,7 @@ namespace Hach.Library.Configuration.Reader
                     string loggingValue = ConfigurationManager.AppSettings["Logging"] ?? string.Empty;
                     return Convert.ToBoolean(loggingValue);
                 }
-                catch (ConfigurationErrorsException)
+                catch (Exception)
                 {
                     return defaultValue;
                 }
@@ -48,7 +48,7 @@ namespace Hach.Library.Configuration.Reader
                     int elementsInInt = int.Parse(elements);
                     return elementsInInt <= 0 ? defaultValue : elementsInInt;
                 }
-                catch (ConfigurationErrorsException)
+                catch (Exception)
                 {
                     return defaultValue;
                 }
@@ -69,7 +69,7 @@ namespace Hach.Library.Configuration.Reader
                     int distanceInInt = int.Parse(distance);
                     return distanceInInt <= 0 ? defaultValue : distanceInInt;
                 }
-                catch (ConfigurationErrorsException)
+                catch (Exception)
                 {
                     return defaultValue;
                 }
