@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Petrolcalculator.Core.Applications.Models.Web
+namespace Hach.Library.Models.Web.Paging
 {
     /// <summary>
     /// The whole paging model

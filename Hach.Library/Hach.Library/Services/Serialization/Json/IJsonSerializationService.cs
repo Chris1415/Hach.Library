@@ -1,4 +1,6 @@
-﻿namespace Hach.Library.Services.Serialization.Json
+﻿using Hach.Library.Services.Serialization.Base;
+
+namespace Hach.Library.Services.Serialization.Json
 {
     /// <summary>
     /// Service to handle JSON Serialization of classes

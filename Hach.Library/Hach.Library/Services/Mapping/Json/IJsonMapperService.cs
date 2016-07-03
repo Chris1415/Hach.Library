@@ -1,4 +1,6 @@
-﻿namespace Hach.Library.Services.Mapping.Json
+﻿using Hach.Library.Services.Mapping.Base;
+
+namespace Hach.Library.Services.Mapping.Json
 {
     /// <summary>
     /// Generic Json to Class Mapper

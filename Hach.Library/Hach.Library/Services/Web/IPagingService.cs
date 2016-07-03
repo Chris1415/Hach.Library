@@ -1,5 +1,5 @@
 ﻿using System;
-using Petrolcalculator.Core.Applications.Models.Web;
+using Hach.Library.Models.Web.Paging;
 
 namespace Petrolcalculator.Core.Applications.Services.Web
 {
