@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Hach.Library.Configuration.Reader;
 using Hach.Library.Extensions;
 using Hach.Library.Models.Web.Paging;
-using Petrolcalculator.Core.Applications.Services.Web;
 
 namespace Hach.Library.Services.Web.Implementations
 {

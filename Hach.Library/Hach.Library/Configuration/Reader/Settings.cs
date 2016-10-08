@@ -75,5 +75,75 @@ namespace Hach.Library.Configuration.Reader
                 }
             }
         }
+
+        /// <summary>
+        /// Access the Google Maps Api Key
+        /// </summary>
+        public static string GoogleMapsApiKey
+        {
+            get
+            {
+                try
+                {
+                    return ConfigurationManager.AppSettings["GoogleMapsApiKey"] ?? string.Empty;
+                }
+                catch (ConfigurationErrorsException)
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Access the Base Price Url
+        /// </summary>
+        public static string BaseGoolgeGeolocationServiceUrl
+        {
+            get
+            {
+                try
+                {
+                    return ConfigurationManager.AppSettings["BaseGoogleGeolocationService"] ?? string.Empty;
+                }
+                catch (ConfigurationErrorsException)
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        public static string Repository
+        {
+            get
+            {
+                try
+                {
+                    return ConfigurationManager.AppSettings["Repository"] ?? string.Empty;
+                }
+                catch (ConfigurationErrorsException)
+                {
+                    return string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Access Caching Time
+        /// </summary>
+        public static int CachingTime
+        {
+            get
+            {
+                try
+                {
+                    string cachingTime = ConfigurationManager.AppSettings["CachingTime"] ?? string.Empty;
+                    return int.Parse(cachingTime);
+                }
+                catch (Exception)
+                {
+                    return 1440;
+                }
+            }
+        }
     }
 }

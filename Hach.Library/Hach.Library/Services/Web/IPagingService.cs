@@ -1,7 +1,7 @@
 ﻿using System;
 using Hach.Library.Models.Web.Paging;
 
-namespace Petrolcalculator.Core.Applications.Services.Web
+namespace Hach.Library.Services.Web
 {
     /// <summary>
     /// Service for Handling Paging

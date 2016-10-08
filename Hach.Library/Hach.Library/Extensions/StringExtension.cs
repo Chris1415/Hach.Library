@@ -1,4 +1,6 @@
-﻿namespace Hach.Library.Extensions
+﻿using System.Text;
+
+namespace Hach.Library.Extensions
 {
     /// <summary>
     /// String Extensions
@@ -16,6 +18,17 @@
         public static bool IsNullOrEmpty(this string input)
         {
             return input == null || input.Equals(string.Empty);
+        }
+
+        /// <summary>
+        /// Encodes a given strin to UTF 8
+        /// </summary>
+        /// <param name="input">input string</param>
+        /// <returns>UTF 8 encoded string</returns>
+        public static string ToUtf8(this string input)
+        {
+            byte[] bytes = Encoding.Default.GetBytes(input);
+            return Encoding.UTF8.GetString(bytes);
         }
     }
 }

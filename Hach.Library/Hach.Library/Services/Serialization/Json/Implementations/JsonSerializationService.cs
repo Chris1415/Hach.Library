@@ -37,13 +37,13 @@ namespace Hach.Library.Services.Serialization.Json.Implementations
         public void Serialize<T>(T model, string filePath)
         {
             try
-            {
+            {                    
                 // Create the Filestream
-                FileStream stream = File.Create(filePath);
-                // Serialize
-                Formatter.Serialize(stream, model);
-                // Close the Filestream
-                stream.Close();
+                using (FileStream stream = File.Create(filePath))
+                {
+                    // Serialize
+                    Formatter.Serialize(stream, model);
+                }
             }
             catch (Exception e)
             {
@@ -62,9 +62,11 @@ namespace Hach.Library.Services.Serialization.Json.Implementations
             try
             {
                 // Create the Filestream
-                FileStream input = File.Open(filePath, FileMode.Open);
-                // Deserialize
-                return (T)Formatter.Deserialize(input);
+                using (FileStream stream = File.Open(filePath, FileMode.Open))
+                {
+                    // Deserialize
+                    return (T)Formatter.Deserialize(stream);
+                }               
             }
             catch (Exception e)
             {
