@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlDiff, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\htmldiff.net.1.3\lib\net35\HtmlDiff.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -41,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,6 +59,9 @@
     <Compile Include="Attributes\RequestParameter\KeyValueAttribute.cs" />
     <Compile Include="Attributes\RequestParameter\UrlPathAttribute.cs" />
     <Compile Include="Configuration\Reader\Settings.cs" />
+    <Compile Include="Extensions\BitmapExtension.cs" />
+    <Compile Include="Extensions\ByteExtension.cs" />
+    <Compile Include="Extensions\IntArrayExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\UriExtension.cs" />
     <Compile Include="Labels\Labels.cs" />
@@ -60,8 +69,12 @@
     <Compile Include="Models\Base\IModel.cs" />
     <Compile Include="Models\Base\Implementations\CacheModel.cs" />
     <Compile Include="Models\Base\IValidity.cs" />
+    <Compile Include="Models\MatchModel.cs" />
+    <Compile Include="Models\MatchTypes.cs" />
+    <Compile Include="Models\ScreenshotCompareModel.cs" />
     <Compile Include="Models\Static\CachedRequestResults.cs" />
     <Compile Include="Models\Static\InMemoryDataStructure.cs" />
+    <Compile Include="Models\StringComparisonModel.cs" />
     <Compile Include="Models\Thread\ExtendedThread.cs" />
     <Compile Include="Models\Web\Geolocation\Geoobject.cs" />
     <Compile Include="Models\Web\Geolocation\GoogleGeocodingModel.cs" />
@@ -74,8 +87,18 @@
     <Compile Include="Repositories\Implementation\ThreadRepository.cs" />
     <Compile Include="Services\Caching\ICachingService.cs" />
     <Compile Include="Services\Caching\Implementations\CachingService.cs" />
+    <Compile Include="Services\Comparer\Image\IImageCompareService.cs" />
+    <Compile Include="Services\Comparer\Image\Implementation\ExactImageMatchService.cs" />
+    <Compile Include="Services\Comparer\Image\Implementation\ImagePixelComparer.cs" />
+    <Compile Include="Services\Comparer\Text\IExactMatchService.cs" />
+    <Compile Include="Services\Comparer\Text\IHtmlDiffService.cs" />
+    <Compile Include="Services\Comparer\Text\Implementation\ExactMatchService.cs" />
+    <Compile Include="Services\Comparer\Text\Implementation\HtmlDiffService.cs" />
+    <Compile Include="Services\Comparer\Text\IStringComparerService.cs" />
     <Compile Include="Services\Facade\Implementations\PredefinedServiceFacade.cs" />
     <Compile Include="Services\Facade\IPredefinedServiceFacade.cs" />
+    <Compile Include="Services\Comparer\Text\ILongestCommonSubsequenceService.cs" />
+    <Compile Include="Services\Comparer\Text\Implementation\LongestCommonSubsequenceService.cs" />
     <Compile Include="Services\Mapping\Base\IMappingService.cs" />
     <Compile Include="Services\Mapping\Geolocation\IGeolocationMappingService.cs" />
     <Compile Include="Services\Mapping\Geolocation\Implementations\GoogleGeolocationMappingService.cs" />
