@@ -10,6 +10,15 @@ namespace Hach.Library.Services.Comparer.Text.Implementation
     {
         public StringComparisonModel CompareStrings(string first, string second)
         {
+            if (first.IsNullOrEmpty() || second.IsNullOrEmpty())
+            {
+                return new StringComparisonModel()
+                {
+                    Input = second,
+                    IsStringDiffrent = true
+                };
+            }
+
             HtmlDiff.HtmlDiff diffHelper = new HtmlDiff.HtmlDiff(first, second);
             string diffString = diffHelper.Build();
             string delMarkup = "<del class='diffmod'>";

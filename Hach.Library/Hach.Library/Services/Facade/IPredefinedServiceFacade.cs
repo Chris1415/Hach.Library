@@ -1,4 +1,5 @@
 ﻿using Hach.Library.Services.Caching;
+using Hach.Library.Services.Mail;
 using Hach.Library.Services.Mapping.Base;
 using Hach.Library.Services.Mapping.Geolocation;
 using Hach.Library.Services.Serialization.Base;
@@ -51,6 +52,11 @@ namespace Hach.Library.Services.Facade
         /// Reference to a Thread Service
         /// </summary>
         IThreadService ThreadService { get; }
+
+        /// <summary>
+        /// Reference to a Mail Service
+        /// </summary>
+        IMailService MailService { get; }
 
         #endregion 
     }

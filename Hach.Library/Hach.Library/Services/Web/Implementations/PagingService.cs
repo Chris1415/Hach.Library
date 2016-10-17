@@ -38,8 +38,8 @@ namespace Hach.Library.Services.Web.Implementations
         /// </summary>
         public PagingService()
         {
-            ElementsPerPage = Settings.ElementsPerPage;
-            NumberOfPagingElements = Settings.NumberOfPaingElements;
+            ElementsPerPage = Settings.Web.ElementsPerPage;
+            NumberOfPagingElements = Settings.Web.NumberOfPaingElements;
         }
 
         /// <summary>

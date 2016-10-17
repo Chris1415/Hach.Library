@@ -26,7 +26,7 @@ namespace Hach.Library.Models.Static
         /// <summary>
         /// NLog
         /// </summary>
-        private static readonly Logger Logger = Settings.Logging ? LogManager.GetCurrentClassLogger() : LogManager.CreateNullLogger();
+        private static readonly Logger Logger = Settings.Base.Logging ? LogManager.GetCurrentClassLogger() : LogManager.CreateNullLogger();
 
         #endregion
 

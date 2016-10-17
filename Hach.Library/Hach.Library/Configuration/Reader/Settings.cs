@@ -15,99 +15,267 @@ namespace Hach.Library.Configuration.Reader
     public static class Settings
     {
         /// <summary>
-        /// Get the Flag for logging as bool
+        /// Base Settings
         /// </summary>
-        public static bool Logging
+        public static class Base
         {
-            get
+            /// <summary>
+            /// Get the Flag for logging as bool
+            /// </summary>
+            public static bool Logging
             {
-                const bool defaultValue = false;
-                try
+                get
                 {
-                    string loggingValue = ConfigurationManager.AppSettings["Logging"] ?? string.Empty;
-                    return Convert.ToBoolean(loggingValue);
-                }
-                catch (Exception)
-                {
-                    return defaultValue;
+                    const bool defaultValue = false;
+                    try
+                    {
+                        string loggingValue = ConfigurationManager.AppSettings["Logging"] ?? string.Empty;
+                        return Convert.ToBoolean(loggingValue);
+                    }
+                    catch (Exception)
+                    {
+                        return defaultValue;
+                    }
                 }
             }
         }
 
         /// <summary>
-        /// The Step With for Paging
+        /// Mail Settings
         /// </summary>
-        public static int ElementsPerPage
+        public static class Mail
         {
-            get
+            /// <summary>
+            /// From
+            /// </summary>
+            public static string From
             {
-                const int defaultValue = 20;
-                try
+                get
                 {
-                    string elements = ConfigurationManager.AppSettings["ElementsPerPage"] ?? string.Empty;
-                    int elementsInInt = int.Parse(elements);
-                    return elementsInInt <= 0 ? defaultValue : elementsInInt;
+                    try
+                    {
+                        return ConfigurationManager.AppSettings["From"] ?? string.Empty;
+                    }
+                    catch (ConfigurationErrorsException)
+                    {
+                        return string.Empty;
+                    }
                 }
-                catch (Exception)
+            }
+
+            /// <summary>
+            /// From
+            /// </summary>
+            public static string To
+            {
+                get
                 {
-                    return defaultValue;
+                    try
+                    {
+                        return ConfigurationManager.AppSettings["To"] ?? string.Empty;
+                    }
+                    catch (ConfigurationErrorsException)
+                    {
+                        return string.Empty;
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Host
+            /// </summary>
+            public static string Host
+            {
+                get
+                {
+                    try
+                    {
+                        return ConfigurationManager.AppSettings["Host"] ?? string.Empty;
+                    }
+                    catch (ConfigurationErrorsException)
+                    {
+                        return string.Empty;
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Port
+            /// </summary>
+            public static int Port
+            {
+                get
+                {
+                    try
+                    {
+                        string entry = ConfigurationManager.AppSettings["Port"] ?? string.Empty;
+                        return int.Parse(entry);
+                    }
+                    catch (ConfigurationErrorsException)
+                    {
+                        return 587;
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Flag to determine if Default Credentials shall be used
+            /// </summary>
+            public static bool UseDefaultCredentials
+            {
+                get
+                {
+                    try
+                    {
+                        string entry = ConfigurationManager.AppSettings["UseDefaultCredentials"] ?? string.Empty;
+                        return bool.Parse(entry);
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Flag to determine if Default Credentials shall be used
+            /// </summary>
+            public static bool EnableSsl
+            {
+                get
+                {
+                    try
+                    {
+                        string entry = ConfigurationManager.AppSettings["EnableSsl"] ?? string.Empty;
+                        return bool.Parse(entry);
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Username 
+            /// </summary>
+            public static string Username
+            {
+                get
+                {
+                    try
+                    {
+                        return ConfigurationManager.AppSettings["Username"] ?? string.Empty;
+                    }
+                    catch (ConfigurationErrorsException)
+                    {
+                        return string.Empty;
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Password
+            /// </summary>
+            public static string Password
+            {
+                get
+                {
+                    try
+                    {
+                        return ConfigurationManager.AppSettings["Password"] ?? string.Empty;
+                    }
+                    catch (ConfigurationErrorsException)
+                    {
+                        return string.Empty;
+                    }
                 }
             }
         }
 
         /// <summary>
-        /// The Number of Paging Elements to be printed
+        /// Web Settings
         /// </summary>
-        public static int NumberOfPaingElements
+        public static class Web
         {
-            get
+            /// <summary>
+            /// The Step With for Paging
+            /// </summary>
+            public static int ElementsPerPage
             {
-                const int defaultValue = 5;
-                try
+                get
                 {
-                    string distance = ConfigurationManager.AppSettings["NumberOfPaingElements"] ?? string.Empty;
-                    int distanceInInt = int.Parse(distance);
-                    return distanceInInt <= 0 ? defaultValue : distanceInInt;
+                    const int defaultValue = 20;
+                    try
+                    {
+                        string elements = ConfigurationManager.AppSettings["ElementsPerPage"] ?? string.Empty;
+                        int elementsInInt = int.Parse(elements);
+                        return elementsInInt <= 0 ? defaultValue : elementsInInt;
+                    }
+                    catch (Exception)
+                    {
+                        return defaultValue;
+                    }
                 }
-                catch (Exception)
+            }
+
+            /// <summary>
+            /// The Number of Paging Elements to be printed
+            /// </summary>
+            public static int NumberOfPaingElements
+            {
+                get
                 {
-                    return defaultValue;
+                    const int defaultValue = 5;
+                    try
+                    {
+                        string distance = ConfigurationManager.AppSettings["NumberOfPaingElements"] ?? string.Empty;
+                        int distanceInInt = int.Parse(distance);
+                        return distanceInInt <= 0 ? defaultValue : distanceInInt;
+                    }
+                    catch (Exception)
+                    {
+                        return defaultValue;
+                    }
                 }
             }
         }
 
-        /// <summary>
-        /// Access the Google Maps Api Key
-        /// </summary>
-        public static string GoogleMapsApiKey
+        public static class Google
         {
-            get
+            /// <summary>
+            /// Access the Google Maps Api Key
+            /// </summary>
+            public static string GoogleMapsApiKey
             {
-                try
+                get
                 {
-                    return ConfigurationManager.AppSettings["GoogleMapsApiKey"] ?? string.Empty;
-                }
-                catch (ConfigurationErrorsException)
-                {
-                    return string.Empty;
+                    try
+                    {
+                        return ConfigurationManager.AppSettings["GoogleMapsApiKey"] ?? string.Empty;
+                    }
+                    catch (ConfigurationErrorsException)
+                    {
+                        return string.Empty;
+                    }
                 }
             }
-        }
 
-        /// <summary>
-        /// Access the Base Price Url
-        /// </summary>
-        public static string BaseGoolgeGeolocationServiceUrl
-        {
-            get
+            /// <summary>
+            /// Access the Base Price Url
+            /// </summary>
+            public static string BaseGoolgeGeolocationServiceUrl
             {
-                try
+                get
                 {
-                    return ConfigurationManager.AppSettings["BaseGoogleGeolocationService"] ?? string.Empty;
-                }
-                catch (ConfigurationErrorsException)
-                {
-                    return string.Empty;
+                    try
+                    {
+                        return ConfigurationManager.AppSettings["BaseGoogleGeolocationService"] ?? string.Empty;
+                    }
+                    catch (ConfigurationErrorsException)
+                    {
+                        return string.Empty;
+                    }
                 }
             }
         }

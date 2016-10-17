@@ -12,6 +12,8 @@ namespace Hach.Library.Models
     [Serializable]
     public class StringComparisonModel
     {
+        #region Properties
+
         /// <summary>
         /// Reference Markup
         /// </summary>
@@ -23,13 +25,22 @@ namespace Hach.Library.Models
         public IList<MatchModel> Changes { get; set; }
 
         /// <summary>
-        /// Changed Positions in markup
-        /// </summary>
-        public IList<IList<int>> ChangedPositions { get; set; }
-
-        /// <summary>
         /// Flag to determine if the string is diffrent
         /// </summary>
         public bool IsStringDiffrent { get; set; }
+
+        #endregion
+
+        #region c'tor
+
+        /// <summary>
+        /// Default c'tor
+        /// </summary>
+        public StringComparisonModel()
+        {
+            Changes = new List<MatchModel>();
+        }
+
+        #endregion
     }
 }

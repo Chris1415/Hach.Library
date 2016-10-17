@@ -1,6 +1,8 @@
 ﻿using Hach.Library.Configuration.Reader;
 using Hach.Library.Services.Caching;
 using Hach.Library.Services.Caching.Implementations;
+using Hach.Library.Services.Mail;
+using Hach.Library.Services.Mail.Implementations;
 using Hach.Library.Services.Mapping.Base;
 using Hach.Library.Services.Mapping.Geolocation;
 using Hach.Library.Services.Mapping.Geolocation.Implementations;
@@ -61,9 +63,14 @@ namespace Hach.Library.Services.Facade.Implementations
         public IThreadService ThreadService { get; }
 
         /// <summary>
+        /// Reference to a Mail Service
+        /// </summary>
+        public IMailService MailService { get; }
+
+        /// <summary>
         /// NLog
         /// </summary>
-        private static readonly Logger Logger = Settings.Logging ? LogManager.GetCurrentClassLogger() : LogManager.CreateNullLogger();
+        private static readonly Logger Logger = Settings.Base.Logging ? LogManager.GetCurrentClassLogger() : LogManager.CreateNullLogger();
 
         #endregion
 
@@ -81,6 +88,7 @@ namespace Hach.Library.Services.Facade.Implementations
             CachingService = new CachingService();
             SerializationService = new JsonSerializationService();
             ThreadService = new ThreadService();
+            MailService = new SystemNetMail();
         }
 
         /// <summary>
@@ -93,6 +101,7 @@ namespace Hach.Library.Services.Facade.Implementations
         /// <param name="cachingService">Reference to a caching service</param>
         /// <param name="serializationService">Reference to a serialization service</param>
         /// <param name="threadService">Reference to a thread service</param>
+        /// <param name="mailService">Reference to Mail Service</param>
         public PredefinedServiceFacade(
             IRequestService requestService,
             IRequestParameterService requestParameterService,
@@ -100,7 +109,8 @@ namespace Hach.Library.Services.Facade.Implementations
             IGeolocationMappingService geolocationMappingService,
             ICachingService cachingService,
             ISerializationService serializationService,
-            IThreadService threadService)
+            IThreadService threadService,
+            IMailService mailService)
         {
             RequestParameterService = requestParameterService;
             RequestService = requestService;
@@ -109,6 +119,7 @@ namespace Hach.Library.Services.Facade.Implementations
             CachingService = cachingService;
             SerializationService = serializationService;
             ThreadService = threadService;
+            MailService = mailService;
         }
 
         #endregion

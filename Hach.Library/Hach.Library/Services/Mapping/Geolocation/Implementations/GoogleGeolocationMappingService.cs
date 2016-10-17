@@ -23,7 +23,7 @@ namespace Hach.Library.Services.Mapping.Geolocation.Implementations
         /// <summary>
         /// NLog
         /// </summary>
-        private static readonly Logger Logger = Settings.Logging ? LogManager.GetCurrentClassLogger() : LogManager.CreateNullLogger();
+        private static readonly Logger Logger = Settings.Base.Logging ? LogManager.GetCurrentClassLogger() : LogManager.CreateNullLogger();
 
         /// <summary>
         /// Json Mapping Service
@@ -39,7 +39,7 @@ namespace Hach.Library.Services.Mapping.Geolocation.Implementations
         public Geoobject MapInputToGeolocation(string input)
         {
             // Get the Base Url
-            string url = Settings.BaseGoolgeGeolocationServiceUrl;
+            string url = Settings.Google.BaseGoolgeGeolocationServiceUrl;
 
             // Error Handling
             if (input.IsNullOrEmpty() || url.IsNullOrEmpty())
