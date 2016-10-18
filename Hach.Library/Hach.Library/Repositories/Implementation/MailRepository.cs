@@ -58,7 +58,9 @@ namespace Hach.Library.Repositories.Implementation
         public string GetMail(string separator, string identifier)
         {
             MailModel mail = (MailModel)this.CachingService.GetModel<MailModel>();
-            return mail.GetMailBody(identifier, separator);
+            return mail == null
+                ? string.Empty 
+                : mail.GetMailBody(identifier, separator);
         }
     }
 }
