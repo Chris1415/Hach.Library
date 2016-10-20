@@ -67,6 +67,16 @@ namespace Hach.Library.Services.Mail.Implementations
             this.MailRepository.AddMailEntry(entry, identifier);
         }
 
+        /// <summary>
+        /// Get the Mail Body for a speciic mail identified by the identifier
+        /// </summary>
+        /// <param name="identifier">the mail identifier</param>
+        /// <returns>Body of the mail</returns>
+        public string GetMailBody(string identifier)
+        {
+            return this.MailRepository.GetMail("<br />", identifier);
+        }
+
 
         /// <summary>
         /// Sends a Mail

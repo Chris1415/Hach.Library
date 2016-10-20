@@ -44,6 +44,13 @@ namespace Hach.Library.Services.Mail
         /// </summary>
         void AddMailEntry(string entry, string identifier);
 
+        /// <summary>
+        /// Get the Mail Body for a speciic mail identified by the identifier
+        /// </summary>
+        /// <param name="identifier">the mail identifier</param>
+        /// <returns>Body of the mail</returns>
+        string GetMailBody(string identifier);
+
         #endregion
     }
 }
