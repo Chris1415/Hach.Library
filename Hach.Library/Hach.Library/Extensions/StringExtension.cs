@@ -3,7 +3,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Hach.Library.Models;
-using Hach.Library.Services.Comparer;
 using Hach.Library.Services.Comparer.Text;
 using Hach.Library.Services.Comparer.Text.Implementation;
 
@@ -64,6 +63,11 @@ namespace Hach.Library.Extensions
         /// <returns>String comparison model to store the second string and all posions, which are diffrent</returns>
         public static StringComparisonModel Compare(this string input, string toCompare)
         {
+            if (input.IsNullOrEmpty() || toCompare.IsNullOrEmpty())
+            {
+                return new StringComparisonModel();
+            }
+
             IStringComparerService comparer = new HtmlDiffService();
             return comparer.CompareStrings(input, toCompare);
         }

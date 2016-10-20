@@ -40,6 +40,11 @@ namespace Hach.Library.Extensions
         /// <returns>Diff Bitmap based on the second one</returns>
         public static ScreenshotCompareModel Diff(this Bitmap first, Bitmap second)
         {
+            if (first == null || second == null)
+            {
+                return new ScreenshotCompareModel();
+            }
+
             IImageCompareService imageCompareService = new ExactImageMatchService();
             return imageCompareService.CompareImage(first, second);
         }
