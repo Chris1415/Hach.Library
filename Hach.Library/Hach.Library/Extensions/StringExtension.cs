@@ -5,6 +5,9 @@ using System.Text;
 using Hach.Library.Models;
 using Hach.Library.Services.Comparer.Text;
 using Hach.Library.Services.Comparer.Text.Implementation;
+using Hach.Library.Enums;
+using Hach.Library.Factories;
+using Hach.Library.Factories.Implementations;
 
 namespace Hach.Library.Extensions
 {
@@ -60,15 +63,18 @@ namespace Hach.Library.Extensions
         /// </summary>
         /// <param name="input">first string</param>
         /// <param name="toCompare">second string</param>
+        /// <param name="comparisonType">Comparison Type</param>
         /// <returns>String comparison model to store the second string and all posions, which are diffrent</returns>
-        public static StringComparisonModel Compare(this string input, string toCompare)
+        public static StringComparisonModel Compare(this string input, string toCompare, StringCompareTypes comparisonType = StringCompareTypes.ExactMatch)
         {
+            IStringComparerFactory ImageCompareFactory = new StringComparerFactory();
+
             if (input.IsNullOrEmpty() || toCompare.IsNullOrEmpty())
             {
                 return new StringComparisonModel();
             }
 
-            IStringComparerService comparer = new HtmlDiffService();
+            IStringComparerService comparer = ImageCompareFactory.CreateStringComparerService(comparisonType);
             return comparer.CompareStrings(input, toCompare);
         }
 

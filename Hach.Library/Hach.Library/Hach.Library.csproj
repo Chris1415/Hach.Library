@@ -59,11 +59,17 @@
     <Compile Include="Attributes\RequestParameter\KeyValueAttribute.cs" />
     <Compile Include="Attributes\RequestParameter\UrlPathAttribute.cs" />
     <Compile Include="Configuration\Reader\Settings.cs" />
+    <Compile Include="Enums\ImageComparerTypes.cs" />
+    <Compile Include="Enums\StringCompareTypes.cs" />
     <Compile Include="Extensions\BitmapExtension.cs" />
     <Compile Include="Extensions\ByteExtension.cs" />
     <Compile Include="Extensions\IntArrayExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\UriExtension.cs" />
+    <Compile Include="Factories\IImageComparerFactory.cs" />
+    <Compile Include="Factories\Implementations\ImageComparerFactory.cs" />
+    <Compile Include="Factories\Implementations\StringComparerFactory.cs" />
+    <Compile Include="Factories\IStringComparerFactory.cs" />
     <Compile Include="Labels\Labels.cs" />
     <Compile Include="Models\Base\ICacheModel.cs" />
     <Compile Include="Models\Base\IModel.cs" />
@@ -121,16 +127,14 @@
     <Compile Include="Services\Web\IRequestParameterService.cs" />
     <Compile Include="Services\Web\IRequestService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="_CreateNewNuGetPackage\Config.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.
-REM If you see this in Visual Studio's Error List window, check the Output window's Build tab for the actual error.
-ECHO Creating NuGet package in Post-Build event...
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "&amp; '$(ProjectDir)_CreateNewNuGetPackage\DoNotModify\CreateNuGetPackage.ps1' -ProjectFilePath '$(ProjectPath)' -OutputDirectory '$(TargetDir)' -BuildConfiguration '$(ConfigurationName)' -BuildPlatform '$(PlatformName)'"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
