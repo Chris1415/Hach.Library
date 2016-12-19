@@ -50,8 +50,6 @@ namespace Hach.Library.Models
             IsStringDiffrent = model.IsStringDiffrent;
             Changes = model.Changes;
             Input = model.Input;
-        }
-
-        #endregion
+        }        #endregion
     }
 }

@@ -7,8 +7,10 @@ using System.Security.Cryptography;
 using Hach.Library.Configuration.Reader;
 using Hach.Library.Models;
 using Hach.Library.Services.Comparer.Image;
-using Hach.Library.Services.Comparer.Image.Implementation;
 using NLog;
+using Hach.Library.Enums;
+using Hach.Library.Factories;
+using Hach.Library.Factories.Implementations;
 
 namespace Hach.Library.Extensions
 {
@@ -37,15 +39,17 @@ namespace Hach.Library.Extensions
         /// </summary>
         /// <param name="first">first bitmap</param>
         /// <param name="second">second bitmap</param>
+        /// <param name="comparisonType">The Comparison Type</param>
         /// <returns>Diff Bitmap based on the second one</returns>
-        public static ScreenshotCompareModel Diff(this Bitmap first, Bitmap second)
+        public static ScreenshotCompareModel Diff(this Bitmap first, Bitmap second, ImageComparerTypes comparisonType = ImageComparerTypes.ExactImageMatch)
         {
+            IImageComparerFactory ImageCompareFactory = new ImageComparerFactory();
             if (first == null || second == null)
             {
                 return new ScreenshotCompareModel();
             }
 
-            IImageCompareService imageCompareService = new ExactImageMatchService();
+            IImageCompareService imageCompareService = ImageCompareFactory.CreateStringComparerService(comparisonType);
             return imageCompareService.CompareImage(first, second);
         }
 
@@ -74,8 +78,7 @@ namespace Hach.Library.Extensions
             {
                 Logger.Error("ToByteArray: " + e.Message);
                 return new byte[0];
-            }
-           
+            }          
         }
 
         /// <summary>

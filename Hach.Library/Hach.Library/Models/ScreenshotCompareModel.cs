@@ -22,29 +22,24 @@ namespace Hach.Library.Models
         /// Flag to determine if the screenshot is diffrent
         /// </summary>
         public bool IsScreenshotDiffrent { get; set; }
-
-        #endregion
-
-        #region c'tor
-
-        /// <summary>
-        /// Copy c'tor
-        /// </summary>
-        /// <param name="model">model</param>
-        public ScreenshotCompareModel(ScreenshotCompareModel model)
-        {
-            DiffrenceScreenshot = model.DiffrenceScreenshot;
-            IsScreenshotDiffrent = model.IsScreenshotDiffrent;
-        }
+ #region c'tor
 
         /// <summary>
         /// Default c'tor
         /// </summary>
         public ScreenshotCompareModel()
         {
-            
         }
 
-        #endregion
-    }
+        /// <summary>
+        /// Copy c'tor
+        /// </summary>
+        /// <param name="model"></param>
+        public ScreenshotCompareModel(ScreenshotCompareModel model)
+        {
+            DiffrenceScreenshot = model.DiffrenceScreenshot;
+            IsScreenshotDiffrent = model.IsScreenshotDiffrent;
+        }
+
+        #endregion    }
 }
