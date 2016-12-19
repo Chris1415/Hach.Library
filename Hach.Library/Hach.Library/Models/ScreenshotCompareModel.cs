@@ -22,7 +22,10 @@ namespace Hach.Library.Models
         /// Flag to determine if the screenshot is diffrent
         /// </summary>
         public bool IsScreenshotDiffrent { get; set; }
- #region c'tor
+
+        #endregion 
+
+        #region c'tor
 
         /// <summary>
         /// Default c'tor
@@ -41,5 +44,6 @@ namespace Hach.Library.Models
             IsScreenshotDiffrent = model.IsScreenshotDiffrent;
         }
 
-        #endregion    }
+        #endregion
+    }
 }
