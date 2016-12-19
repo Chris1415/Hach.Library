@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Hach.Library.Models
 {
@@ -10,6 +11,12 @@ namespace Hach.Library.Models
     /// </author>
     public class MatchModel
     {
+        /// <summary>
+        /// Key Attribute
+        /// </summary>
+        [Key]
+        public int Key { get; set; }
+
         /// <summary>
         /// Match
         /// </summary>

@@ -41,6 +41,17 @@ namespace Hach.Library.Models
             Changes = new List<MatchModel>();
         }
 
+        /// <summary>
+        /// Copy c'tor
+        /// </summary>
+        /// <param name="model">model</param>
+        public StringComparisonModel(StringComparisonModel model)
+        {
+            IsStringDiffrent = model.IsStringDiffrent;
+            Changes = model.Changes;
+            Input = model.Input;
+        }
+
         #endregion
     }
 }

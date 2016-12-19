@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using Hach.Library.Extensions;
 using Hach.Library.Models;
 
 namespace Hach.Library.Services.Comparer.Image.Implementation
@@ -36,7 +38,7 @@ namespace Hach.Library.Services.Comparer.Image.Implementation
 
             return new ScreenshotCompareModel()
             {
-                DiffrenceScreenshot = result,
+                DiffrenceScreenshot = result.ToByteArray(ImageFormat.Jpeg),
                 IsScreenshotDiffrent = hasChanged
             };
         }

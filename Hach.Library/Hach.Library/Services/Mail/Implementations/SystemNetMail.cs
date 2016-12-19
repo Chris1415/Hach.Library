@@ -51,10 +51,11 @@ namespace Hach.Library.Services.Mail.Implementations
         /// <param name="subject">Subject</param>
         /// <param name="to">To</param>
         /// <param name="identifier">The identifier of the composed mail</param>
+        /// <param name="sendEmptyMail">Flag to determine if the mail shall be send even if its empty</param>
         /// <returns>true if the mail sending was successfull, otherwise false</returns>
-        public bool SendComposedMail(string subject, string to, string identifier)
+        public bool SendComposedMail(string subject, string to, string identifier, bool sendEmptyMail = true)
         {
-            bool success = SendMail(subject, MailRepository.GetMail("<br />", identifier), to);
+            bool success = SendMail(subject, MailRepository.GetMail("<br />", identifier), to, sendEmptyMail);
             this.MailRepository.ClearMail(identifier);
             return success;
         }
@@ -84,8 +85,9 @@ namespace Hach.Library.Services.Mail.Implementations
         /// <param name="subject">Subject</param>
         /// <param name="body">Body</param>
         /// <param name="to">To</param>
+        /// <param name="sendEmptyMail">Flag to determine if the mail shall be send even if its empty</param>
         /// <returns>true if the mail sending was successfull, otherwise false</returns>
-        public bool SendMail(string subject, string body, string to)
+        public bool SendMail(string subject, string body, string to, bool sendEmptyMail = true)
         {
             string from = Settings.Mail.From;
             string host = Settings.Mail.Host;
@@ -94,6 +96,11 @@ namespace Hach.Library.Services.Mail.Implementations
             string password = Settings.Mail.Password;
             int port = Settings.Mail.Port;
             bool enableSsl = Settings.Mail.EnableSsl;
+
+            if (string.IsNullOrEmpty(body) && !sendEmptyMail)
+            {
+                return false;
+            }
 
             try
             {

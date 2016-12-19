@@ -55,7 +55,7 @@ namespace Hach.Library.Extensions
         /// <param name="image">Bitmap</param>
         /// <param name="format">Format</param>
         /// <returns>ByteArray</returns>
-        public static byte[] ToByteArray(this Image image, ImageFormat format)
+        public static byte[] ToByteArray(this Bitmap image, ImageFormat format)
         {
             if (image == null)
             {

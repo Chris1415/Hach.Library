@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 
 namespace Hach.Library.Models
 {
@@ -12,14 +11,40 @@ namespace Hach.Library.Models
     [Serializable]
     public class ScreenshotCompareModel
     {
+        #region Properties
+
         /// <summary>
         /// Screenshot with the highlighted diffrence
         /// </summary>
-        public Bitmap DiffrenceScreenshot { get; set; }
+        public byte[] DiffrenceScreenshot { get; set; }
 
         /// <summary>
         /// Flag to determine if the screenshot is diffrent
         /// </summary>
         public bool IsScreenshotDiffrent { get; set; }
+
+        #endregion
+
+        #region c'tor
+
+        /// <summary>
+        /// Copy c'tor
+        /// </summary>
+        /// <param name="model">model</param>
+        public ScreenshotCompareModel(ScreenshotCompareModel model)
+        {
+            DiffrenceScreenshot = model.DiffrenceScreenshot;
+            IsScreenshotDiffrent = model.IsScreenshotDiffrent;
+        }
+
+        /// <summary>
+        /// Default c'tor
+        /// </summary>
+        public ScreenshotCompareModel()
+        {
+            
+        }
+
+        #endregion
     }
 }
